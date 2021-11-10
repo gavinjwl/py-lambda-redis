@@ -2,7 +2,7 @@
 
 - install package in local
 
-`pip3 install -r requirements.txt --target ./package redis`
+`pip3 install -r requirements.txt --target ./package`
 
 - package
 

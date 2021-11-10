@@ -1,4 +1,4 @@
-import redis
+from rediscluster import RedisCluster
 import json
 
 HOST='localhost'
@@ -7,13 +7,20 @@ PORT=6379
 def lambda_handler(event, context):
     print('hello_world')
 
-    r = redis.Redis(host=HOST, port=PORT, db=0)
+    startup_nodes = [
+        {"host": HOST, "port": PORT},
+    ]
+    rc = RedisCluster(
+        startup_nodes=startup_nodes,
+        decode_responses=True,
+        skip_full_coverage_check=True,
+    )
     
     print('set-----------------')
-    r.set('foo', 'bar')
+    rc.set('foo', 'bar')
     
     print('get-----------------')
-    foo = r.get('foo')
+    foo = rc.get('foo')
     print(f'foo: {foo}')
 
     return {
