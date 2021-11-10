@@ -2,7 +2,9 @@
 
 - install package in local
 
-`pip3 install -r requirements.txt --target ./package`
+```bash
+pip3 install -r requirements.txt --target ./package
+```
 
 - package
 
